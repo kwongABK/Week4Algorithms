@@ -94,8 +94,12 @@ int AStarSearch(int map[4][4], int size)
             distances[i] = INT_MAX;
         }
     }
-    // Default array constructor sets the values to 0.
-    int visited[4] = {};
+    // Set initial visited state to false.
+    int* visited = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        visited[i] = 0;
+    }
     int currentNode = 0;
 
     // The end condition is all nodes being visited, or the next node being infinite distance.
@@ -123,6 +127,9 @@ int AStarSearch(int map[4][4], int size)
 
     delete[] distances;
     distances = nullptr;
+    delete[] visited;
+    visited = nullptr;
+
     return result == INT_MAX ? -1 : result;
 }
 
